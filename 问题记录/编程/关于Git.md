@@ -12,8 +12,25 @@
 
 
 
+
+
+[提高元认知能力](https://stackoverflow.com/questions/18356502/github-failed-to-connect-to-github-443-windows-failed-to-connect-to-github)
+
+
+
 ## 2. 上传文件不全面，仅仅一部分上传成功
 
 经过验证，建立空文件夹不会被`git`识别到修改。
 
 已经存在与仓库中的文件进行修改可以被识别。这些问题出现的原因其实都是自己没有认真看教程所导致的。
+
+
+
+
+
+
+
+# 参考资料
+
+* https://stackoverflow.com/questions/18356502/github-failed-to-connect-to-github-443-windows-failed-to-connect-to-github
+
