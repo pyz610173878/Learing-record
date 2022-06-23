@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head> </head>
+  <body>
+    <h1>JavaScript 验证</h1>
+
+    <form
+      name="myForm"
+      action="/demo/html/action_page.php"
+      onsubmit="return validateForm()"
+      method="post"
+    >
+      Name: <input type="text" name="fname" />
+      <input type="submit" value="Submit" />
+    </form>
+    <script>
+      function validateForm() {
+        let x = document.forms["myForm"]["fname"].value;
+        if (x == "") {
+          alert("Name must be filled out");
+          return false;
+        }
+      }
+
+
+
+
+
+
+
+
+
+
+    // 跳转成功的要求
+    // 1. 用户名
+    // 1. 表单输入不能为空
+    // 2. 不能超过16位字符(使用正则规则，业界对于注册账号肯定有普遍的规范)
+
+    //  需要监听的事件包括 鼠标点击事件和 离开输入框事件
+    </script>
+    <form name="myForm" action="/demo/html/action_page.php" onsubmit= ""; method="post">
+        Name: <input type="text" name="fname">
+        <input type="submit" value="Submit">
+      </form>
+
+      <!-- 需要回顾的知识 -->
+  </body>
+</html>

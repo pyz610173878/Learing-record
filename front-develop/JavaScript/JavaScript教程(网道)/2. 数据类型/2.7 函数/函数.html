@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const log = console.log.bind(console)
+        const dir = console.dir.bind(console)
+
+
+
+
+        // 函数声明的三种方式
+
+        // function关键字声明
+        function animma1() {
+            log("function关键字声明函数")
+        }
+
+        // 函数表达式(匿名函数)
+
+        // 以变量的形式赋值
+        const animal = function (s) {
+            return s
+        };
+
+        // 我们把这个匿名函数赋值这animal这个常量。往后就可以使用animal调用此函数。
+
+
+
+
+        // 记录:
+        // 阮老师的猜想
+
+        // 采用函数表达式声明函数时，function命令后面不带有函数名。
+        // 如果加上函数名，该函数名只在函数体内部有效，在函数体外部无效。
+
+        var print = function x() {
+            console.log(typeof x);
+        };
+
+        // x
+        // ReferenceError: x is not defined
+
+        print()
+        // function
+
+
+        // 上面代码在函数表达式中，加入了函数名x。这个x只在函数体内部可用，指代函数表达式本身，其他地方都不可用。这种写法的用处有两个，一是可以在函数体内部调用自身，二是方便除错（除错工具显示函数调用栈时，将显示函数名，
+        // 而不再显示这里是一个匿名函数）。因此，下面的形式声明函数也非常常见。
+
+
+
+        // 匿名函数是什么
+        // 不是什么?
+        // 与之类似的概念 : Python中的lambda
+        // 他们之间的微妙差异
+
+
+        // 他是声明函数的一种形式,此函数没有函数名.
+        // 问题抽象函数不是什么，复杂数据类型
+        // Python中的lambda 中的匿名函数 返回值只能写一个表达式
+
+
+        // (3) 构造函数
+
+        // 构造函数的声明与普通函数之间没有区别，
+        // 他们之间的区别在于，
+        // 1. 使用this关键字
+        // 2. 有属性与方法
+
+
+        var add = new Function(
+            'x',
+            'y',
+            'return x + y'
+        );
+
+        // 等同于
+        function add(x, y) {
+            return x + y;
+        }
+
+
+
+        // 为什么可以用这种方法声明函数
+        // 1. function本身就是一个对象.
+        // 2. 其实就是实例化一个function对象的实例对象.
+
+
+
+        // 函数的重复声明
+        //与之类似的 变量的提升
+
+
+        // function add(x, y) {
+        //     return x + (y + 2);
+        // }
+
+        log(add(23, 4))
+
+
+
+        // 总结
+        // 当为一个函数声明两次或者多次时，始终以最后一个函数声明为准。
+        // 如果同一个函数被多次声明，后面的声明就会覆盖前面的声明。
+
+
+
+        // 重要结论: 凡是可以使用值的地方，都可以使用函数，即函数就可以看成是一种复杂的数据结构。
+
+        // 理由:
+        // JavaScript 语言将函数看作一种值，与其它值（数值、字符串、布尔值等等）地位相同。
+        // 凡是可以使用值的地方，就能使用函数。比如，可以把函数赋值给变量和对象的属性，也可以当作参数传入其他函数，或者作为函数的结果返回。函数只是一个可以执行的值，此外并无特殊之处
+
+
+        // function add(x, y) {
+        //     return x + y;
+        // }
+
+        // 将函数赋值给一个变量
+        var operator = add;
+
+        // 猜想:
+
+
+
+
+        // 将函数作为参数和返回值
+        function a(op) {
+            return op;
+        }
+        a(add)(1, 1)
+        // 2
+
+        // 问题:函数作为参数和返回值在项目中使用场景？
+
+
+
+
+        // log(null instanceof Object)
+
+        // null是一个对象但不是Object子类
+
+
+
+        var object = {};
+        dir(object)
+        var b = Object.prototype;
+
+        // console.log(object.prototype === b, Object.getPrototypeOf(object) == b)
+
+        // 
+
+
+        log(typeof (3 + 5))
+
+
+        var ary = Array(3);
+        ary[0] = 2;
+        ary.map(function (elem) {
+            return "1";
+        });
+
+        console.log(ary);
+
+
+
+
+
+
+        // 5.1 闭包
+
+        // 理解闭包，首先必须理解变量作用域。
+        // 前面提到，JavaScript 有两种作用域：全局作用域和函数作用域。函数内部可以直接读取全局变量
+
+
+
+        // 函数作用域中的值，在全局环境下无法访问。
+
+
+
+
+
+
+        // 解决办法
+        // 在函数外再嵌套一个函数。
+        function father() {
+            var n = 999;
+
+            function son() {
+                console.log(n); // 999
+            }
+        }
+
+        // 根据链式作用域结构
+        // 嵌套在外面的这层函数,中的所有变量，son都是可见的。
+        // 但是反过来就不行，f2内部的局部变量，对f1就是不可见的
+
+        // 我们可以把他类比成什么呢？
+        // 那种事物也存在这种特征了，
+
+
+        // function f1() {
+        //     var n = 999;
+        //     function f2() {
+        //         console.log(n);
+        //     }
+        //     return f2;
+        // }
+
+        // var result = f1();
+        // result(); // 999
+
+        // 能获取其他函数内部变量(参数也算)的函数就是闭包。
+
+
+        function f1(start) {
+            function f2() {
+                var sum = start;
+                return function f3() {
+                    return sum++;
+                }
+            }
+            return f2()
+        }
+
+        var inc = f1(6);
+
+        log(inc()) // 5
+        log(inc())
+        log(inc())
+
+        // 内层函数获取了外层函数内部变量的值，对变量进行运算，然后返回这个函数。
+        // 闭包使得内部变量记住上一次调用时的运算结果
+
+        //  猜想
+        // 做一点复杂的运算。
+
+
+        // 我再嵌套一层函数，f3是不是可以获取f2内部中的变量。
+
+        //f2可以获取f1内部变量。
+        // 因为链式作用域，f3可以获取f2内部变量。所以f3获取的还是f1的变量。
+        // 这不多此一举吗？可以之间通过f2函数进行运算。
+
+
+
+        // 示例
+
+        function makeAdder(x) {
+            return function (y) {
+                return x + y;
+            };
+        }
+
+        var add5 = makeAdder(5);
+        var add10 = makeAdder(10);
+        log(add5())
+        // console.log(add5(2));  // 7
+        // console.log(add10(2)); // 12
+
+        // 已阮老师的例子相似。
+        // 第一次返回值的值，被保存下来了。
+
+
+        // 用闭包模拟私有方法
+        // var person = (function () {
+        //     var age = 18;
+        //     function zhangda() {
+        //         age += 1;
+        //     }
+        //     return {
+        //         increment: function () {
+        //             changeBy(1);
+        //         },
+        //         decrement: function () {
+        //             changeBy(-1);
+        //         },
+        //         value: function () {
+        //             return privateCounter;
+        //         }
+        //     }
+        // })();
+
+        // console.log(Counter.value()); /* logs 0 */
+        // Counter.increment();
+        // Counter.increment();
+        // console.log(Counter.value()); /* logs 2 */
+        // Counter.decrement();
+        // console.log(Counter.value()); /* logs 1 */
+
+
+
+        function sayHiBye(firstName, lastName) {
+
+            // 辅助嵌套函数使用如下
+            function getFullName() {
+                return firstName + " " + lastName;
+            }
+
+            alert("Hello, " + getFullName());
+            alert("Bye, " + getFullName());
+
+        }
+        // sayHiBye("彭", "逸钊")
+
+
+
+
+        // 闭包具有很强的实际用途
+        // 线索之一  用作 随机数生成器 以生成用于自动化测试的随机数值
+        // function makeCounter() {
+        //     let count = 0;
+
+        //     return function () {
+        //         return count++;
+        //     };
+        // }
+
+        // let counter = makeCounter();
+
+        // alert(counter()); // 0
+        // alert(counter()); // 1
+        // alert(counter()); // 2
+
+        let name = "john"
+         name = "jack"
+        log(name)
+        log(name)
+
+        
+    </script>
+
+</body>
+
+
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const log = console.log.bind(console)
+        const dir = console.dir.bind(console)
+        // var person = {
+        //     name: "Nicholas",
+        //     age: [Vaule],
+        //     job: "Soft",
+        //     sayName: function () {
+        //         alert(
+        //             this.name);
+        //     }
+        // }
+
+        // 数据属性的四大特征。
+
+        // delete person.name
+
+        // 能使用delete删除其属性
+        // 可迭代对象，能够利用for in 进行遍历。
+        // 能修改其属性的值。
+        // [[]]
+
+
+
+        // 迭代对象中的属性与方法
+        // 使用for in 迭代器
+        for (let i in person) {
+            log(person)
+            console.log('键名：', i);
+            console.log('键值：', person[i]);
+        }
+
+
+        // 它遍历的是对象所有可遍历（enumerable）的属性，会跳过不可遍历的属性。
+        // 它不仅遍历对象自身的属性，还遍历继承的属性。
+
+        // 不遍历继承的属性方法之一
+        // 使用 hasOwnProperty
+        var person = { name: '老张' };
+
+        for (var key in person) {
+            if (person.hasOwnProperty(key)) {
+                console.log(key);
+            }
+        }
+        // name
+
+        const training = function () {
+            const person = {
+
+                name: "Nicholas",
+                // age: [Vaule],
+                job: "Soft",
+                sayName: function () {
+                    alert(
+                        this.name);
+                }
+            }
+
+            Object.defineProperty(person, 'Truth', {
+                value: "真理是绝对的",
+                writable: true
+            });
+
+            person.Truth = 77;
+            // throws an error in strict mode
+
+            console.log(person.Truth);
+            Object.defineProperty(person, 'sayName1', {
+                value: function () {
+                    alert(
+                        this.job);
+                },
+                writable: false
+            });
+
+            console.log(person.sayName1());
+        }
+        // training()
+
+
+
+        // expected output: 42
+
+        // configurable设置为 false 表示不能从对象中删除属性.
+        // 可以多次使用defineproperty方法，修改，增加属性。但是，如果为configurable设置
+        // 为falseh后，除可读属性以外，再调用其他特性都会导致报错。
+
+
+
+
+        const pyz = {
+            name: "Nicholas",
+            // age: [Vaule],
+            job: "Soft",
+            sayName: function () {
+                alert(this.name);
+            }
+        }
+
+        var pyc = {
+            name: "lxl"
+        }
+        pyc.sayName1 = pyz.sayName;
+        log(pyc.sayName1())
+    </script>
+</body>
+
+</html>

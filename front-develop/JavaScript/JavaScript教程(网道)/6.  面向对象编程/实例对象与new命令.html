@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const log = console.log.bind(console)
+        const dir = console.dir.bind(console)
+
+
+
+
+
+        // 2.  构造函数
+        var Animal = function (name, jiaosheng, age) {
+            this.name = name;
+            this.jiaosheng = jiaosheng;
+            this.age = age;
+        };
+
+
+        // var dog = animal("柴犬", "wawawa", 5);
+        // log(dog.name)
+        // log(dog.jiaosheng)
+        // log(dog.age)
+        // log(name)
+        // log(jiaosheng)
+        // log(age)
+
+
+
+
+
+
+        // new命令执行构造函数，实例化对象。(对构造函数进行实例化)
+        var dog = new Animal("柴犬", "wawawa", 5);
+        // log(dog.name)
+        // log(dog.jiaosheng)
+        // log(dog.age)
+
+
+
+        //由于对象的属性可以赋给另一个对象，
+        //所以属性所在的当前对象是可变的，即this的指向是可变的
+        var A = {
+            name: '张三',
+            describe: function () {
+                return '姓名:' + this.name;
+            }
+        };
+
+        var B = {
+            name: '李四',
+            describe: function () {
+                return '姓名：' + this.name;
+            }
+        };
+
+        B.describe = A.describe;
+        B.describe()
+
+
+        var A = {
+            name: '张三',
+            describe: function () {
+                return '姓名：' + this.name;
+            }
+        };
+        // 对象a的name属性值 为张三
+        var name = '李四';
+        // 定义一个全局变量name.
+        var f = A.describe; //这个相当于为函数去一个化名嘛！
+        //f() // "姓名：李四" 
+        //此时 函数f中this的指向变成了全局变量name的值 李四
+
+
+
+
+        var o = {
+            f1: function () {
+                log(this);
+                var x = 1;
+                log(x);
+            }
+        }
+        // o.f1()
+        // log(x)
+
+        var o = {
+            f1: function () {
+                log(this);
+                var f2 = function () {
+                    log(this)
+                }();
+            }
+        }
+
+
+        o.f1()
+        // 猜想
+        //1.  即使不为匿名函数赋值，他的this指向也是全局变量window
+        //2.  括号的作用让f1函数再次调用。重点疑问！
+
+        // Object
+        // Window
+
+        // 验证你的猜想！
+        // 改变什么第二个函数的this指向会变成对象本身D
+        // 这两个this的指向会是同一个对象吗？
+
+
+        // 你的猜想错了，回顾你的思考过程？
+        // 为什么你会认为是因为var改变了this的指向！
+        // 这是否暴露了你对某些知识点的疏漏！
+        // 
+        var temp = function () {
+            log(this);
+        };
+
+        var o = {
+            f1: function () {
+                log(this);
+                var f2 = temp();
+            }
+        }
+
+        // 他是在函数体内定义的，为什么是全局变量呢？
+
+        // 解决办法:
+        // 1.  在第二层改用一个指向外层this的变量
+
+        var o = {
+            f1: function () {
+                console.log(this);
+                var that = this;
+                var f2 = function () {
+                    console.log(that);
+                }();
+            }
+        }
+
+
+        // o.f1()
+
+
+        // 猜想与验证
+        //什么时候使用变量固定this的值？
+        //为什么使用变量固定this的值？
+
+        // 实例1:
+        var o = {
+            f1: function () {
+                log(this);
+                var that1 = this;
+                var f2 = function () {
+                    var that = this;
+                    log(that);
+                }();
+            }
+        }
+
+
+        //o.f1()
+        // Object
+        // Window
+        // Object
+
+        // 根据验证，变量放在f2函数体内，this的指向依旧发生了变化。
+        // 即f2函数的执行改变了this的指向。
+        // 最佳的做法变量放在this值的下一行。
+        //事实上，使用一个变量固定this的值，然后内层函数调用这个变量，是非常常见的做法'.
+
+
+
+
+        window.onload = function () {
+            var o = new Object();
+            o.f = function () {
+                console.log(this === o);
+            }
+            var btns = document.querySelector("button")
+            btns.addEventListener("click", o.f = function () {
+                console.log(this === o);
+            })
+        }
+    </script>
+    <button style="width: 40px;"></button>
+</body>
+
+</html>

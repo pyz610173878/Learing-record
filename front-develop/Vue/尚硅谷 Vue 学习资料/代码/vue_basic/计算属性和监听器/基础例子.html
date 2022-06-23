@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>理解MVVM</title>
+    <!-- 引入Vue -->
+    <script type="text/javascript" src="../js/vue.js"></script>
+  </head>
+  <body>
+    <div id="example">
+      <p>Original message: "{{ name }}"</p>
+      <p>Computed reversed message: "{{reversedMessage }}"</p>
+    </div>
+
+    <script type="text/javascript">
+      Vue.config.productionTip = false; //阻止 vue 在启动时生成生产提示。
+
+      var vm = new Vue({
+        el: "#example",
+        data: {
+          name: "pyz",
+        },
+        computed: {
+          // 计算属性的 getter
+          reversedMessage: function () {
+            console.log(this);
+            // `this` 指向 vm 实例
+            return this.name.split("").reverse().join("");
+          },
+        },
+      });
+      //   此函数的作用，改变对象的值
+    </script>
+  </body>
+</html>

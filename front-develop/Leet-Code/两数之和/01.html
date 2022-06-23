@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const log = console.log.bind(console)
+        const dir = console.dir.bind(console)
+        //给定一个整数数组 nums 和一个整数目标值 target，
+        //请你在该数组中找出 和为目标值 target  的那 两个 整数，并返回它们的数组下标
+        // 在求和的基础上 
+        // 第一步 遍历所有数组 
+        // 比较 与 target 参数进行比较 
+        // 返回:   的事 数字在数组中的下标。
+        //
+
+
+        // 输入：nums = [2, 7, 11, 15], target = 9
+        // 输出：[0, 1]
+        // 解释：因为 nums[0] + nums[1] == 9 ，返回[0, 1] 。
+
+
+
+        //问题简化一下:
+        // 给定一个target 如果存在返回它的下标
+        // var twoSum = function (array, target) {
+        //     for (var index = 0; index < array.length; index++) {
+        //         var element = array[index];
+        //         if (element == target) {
+        //             return log(index)
+        //         }
+        //     }
+        // }
+        // var array1 = [2, 7, 11, 15];
+
+        // twoSum(array1,11)
+
+
+        //下一步 增加难度 给定 两个target 返回他们两个人的下标
+
+        var twoSum = function (array, target, target1) {
+            var result = [];
+            for (var index = 0; index < array.length; index++) {
+                var element = array[index];
+
+                log('每次循环element的值', element)
+                for (var index1 = 0; index1 < array.length; index1++) {
+                    var element1 = array[index1]
+                    //log2
+                    log('每次循环element1的值', element1)
+                    // return log(index, index1)
+                    if (element == target && element1 == target1) {
+                        result.push(index, index1)
+                        return log(result)
+                    }
+
+                }
+            }
+        }
+        var array1 = [2, 7, 11, 15, 46, 35, 54];
+
+        twoSum(array1, 11, 15)
+        twoSum(array1, 46, 54)
+        twoSum(array1, 15, 2)
+        // 通过问题的拆分 
+        // 问题现在还剩下最后一步
+        // 数组下标相加 并转换为数组
+
+        // 我还需要再提取一个数来，进行比较。
+        // 我的思考过程正确吗？
+
+        // element == target && element == target1
+        // 数组中的某一个数 同时跟两个元素进行比较
+        // 还需要一个for循环 那这个for循环写在哪里呢？
+
+
+        var twoSum = function (array, target1) {
+            var result = [];
+            for (var index = 0; index < array.length; index++) {
+                var element = array[index];
+                log('每次循环element的值', element)
+                for (var index1 = index + 1; index1 < array.length; index1++) {
+                    var element1 = array[index1]
+                    //log2
+                    log('每次循环element1的值', element1)
+                    // return log(index, index1)
+                    if (element + element1 == target1) {
+                        result.push(index, index1)
+                        return log(result)
+                    }
+
+                }
+            }
+        }
+        var array1 = [2, 7, 11, 15, 46, 35, 54];
+
+        twoSum(array1, 18)
+        twoSum(array1, 9)
+        twoSum(array1, 61)
+        // 程序还可以进一步迭代 
+        // 数组中不仅仅只有
+
+
+
+
+
+        // index1 = index + 1 它这个方法思考得比我更加深入，我自己也是可以做出来得。
+        // 
+
+
+
+
+        //  总结
+
+        // 不管是给定几个参数，程序中共性的地方就是 利用双重for循环，迭代数组中的所有数。
+        
+
+        //进一步思考，这种操作是不是具有普遍意义呢？
+        //能否写成一个函数？
+
+
+
+
+
+
+
+
+    // 猜想与印证:
+    // 1: 简化程序
+    // 2: 增加参数
+    // 3: 减少重复代码:
+    // 4:
+
+
+
+
+
+
+
+        // 只能返回 一个数组的下标值
+        // 我需要返回 两个数组的下标。
+        // 现在的问题是 当获取了
+        // function getArrayIndex(arr, obj, obj1) {
+        //     for (var i = 0; i < arr.length; i++) {
+        //         if (arr[i] == obj && arr[i + 1] == obj1) {
+        //             break
+
+        //         }
+        //     }
+        //     return log(i - 1);
+        // }
+
+
+        // getArrayIndex(nums, 235, 45)
+        // 此函数 // 获取两个参数的下标之和
+
+    </script>
+</body>
+
+</html>

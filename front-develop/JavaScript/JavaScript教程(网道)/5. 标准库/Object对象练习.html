@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 每个章节之间间隔四行，代码示例之间间隔两行，例子的输出结果与例子之间间隔一行。根据软件设计原则，重复的都是不好的，我能不能把这种设置改为格式化中的部分，这样我就不需要自己再去调了。减少重复劳动
+        // 我为啥要自己创造规则呢？我应该使用业内公认的代码规范，是吧。
+
+        const log = console.log.bind(console)
+        const dir = console.dir.bind(console)
+
+
+        const training_1 = function () {
+            // Object本身的方法与Object实例方法练习
+
+
+            Object.print = function (n,) {
+                log("方法可以进行重写", n)
+            }
+
+            Object.print(3)
+
+
+            Object.print1 = function () {
+                log("123")
+            }
+
+            Object.print1()
+        
+
+
+        Object.prototype.print1 = function (n) {
+                log(n)
+            }
+
+            var o = new Object();
+            o.print1(5)
+            //
+
+            var str = new String();
+            str.print1(5)
+        }
+
+
+
+
+            const part_2 = function() {
+                // Object作为函数的用法的练习
+
+                
+            }
+
+
+
+            const part_3 = function() {
+                 // Object作为构造函数的用法的练习
+                //  Object构造函数的首要用途，是直接通过它来生成新对象
+            }
+    </script>
+</body>
+
+</html>

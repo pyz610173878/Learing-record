@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="demo">
+    <input v-model="message" @keypress="isNumber($event)">
+  </div>
+  <script src="./vue.min.js">
+    var data = {
+      message: 1234.34
+    }
+
+    var demo = new Vue({
+      el: '#demo',
+      data: data,
+      methods: {
+        isNumber: function (evt) {
+          evt = (evt) ? evt : window.event;
+          var charCode = (evt.which) ? evt.which : evt.keyCode;
+          if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) {
+            evt.preventDefault();;
+          } else {
+            return true;
+          }
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

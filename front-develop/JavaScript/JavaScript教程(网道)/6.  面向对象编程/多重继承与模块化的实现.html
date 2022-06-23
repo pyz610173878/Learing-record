@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+    </style>
+    <script>
+        const log = console.log.bind(console)
+        const dir = console.dir.bind(console)
+
+
+        var module1 = new Object({
+            _count: 0,
+            m1: function () {
+                return 23;
+            },
+            m2: function () {
+                //...
+            }
+        });
+
+
+        module1._count  // 0
+        module1.m1()  // 23
+
+
+
+
+        var module1 = {
+            _count: 23,
+            m1: function () {
+                log('123')
+            },
+            m2: function () {
+                log("43")
+            }
+        }
+        var module2 = new Object(module1);
+
+
+        log(module2._count)  // 0
+        module2.m1()  // 23
+
+
+
+        const part_4 = function () {
+            function StringBuilder() {
+                var buffer = [];
+
+                this.add = function (str) {
+                    buffer.push(str);
+                };
+
+                this.toString = function () {
+                    return buffer.join('');
+                };
+
+            }
+        }
+
+
+        //  封装私有变量：构造函数的写法
+
+        function StringBuilder() {
+            this._buffer = [];
+        }
+
+        StringBuilder.prototype = {
+            constructor: StringBuilder,
+            add: function (str) {
+                return this._buffer.push(str)
+            },
+            toString: function () {
+                return this._buffer.join('');
+            }
+        };
+
+        StringBuilder.prototype.color = "red";
+
+        var str1 = new StringBuilder();
+        log(str1.add("123"))
+        log(str1._buffer)
+
+
+
+        function getRandom() {
+            return Math.random();
+        }
+        getRandom()
+    </script>
+</body>
+
+</html>
