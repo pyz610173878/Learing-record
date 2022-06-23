@@ -30,7 +30,7 @@ Everything up-to-date
 
 ## 1. 连接被重置
 
-![image-20220623182027371](%E5%85%B3%E4%BA%8EGit.assets/image-20220623182027371-16559796292841.png)
+![](%E5%85%B3%E4%BA%8EGit.assets/%E8%BF%9E%E6%8E%A5%E8%A2%AB%E9%87%8D%E7%BD%AE.jpg)
 
 
 
