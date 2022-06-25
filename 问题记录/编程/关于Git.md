@@ -30,7 +30,7 @@ Everything up-to-date
 
 ## 1. 连接被重置
 
-![image-20220623184403964](image-20220623184403964.png)
+![image-20220623185743687](%E5%85%B3%E4%BA%8EGit.assets/image-20220623185743687-16559818667831.png)
 
 ```
 fatal: 无法访问'https://github.com/pyz610173878/Learing-record.git/'。OpenSSL SSL_read。连接被重置，errno 10054
